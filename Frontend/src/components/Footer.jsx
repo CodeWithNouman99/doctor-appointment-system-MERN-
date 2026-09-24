@@ -35,7 +35,7 @@ const Footer = () => {
           <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
           <ul className='flex flex-col gap-2 text-gray-600'>
             <li><a href='tel:+923001234567' className='hover:text-[#5F6FFF] transition-colors'>+92 300 1234567</a></li>
-            <li><a href='mailto:support@medislot.com' className='hover:text-[#5F6FFF] transition-colors'>support@medislot.com</a></li>
+            <li><a href='mailto:support@Prescripto.com' className='hover:text-[#5F6FFF] transition-colors'>support@Prescripto.com</a></li>
           </ul>
         </div>
 
@@ -45,7 +45,7 @@ const Footer = () => {
       <div>
         <hr className='border-gray-300' />
         <p className='py-5 text-sm text-center text-gray-600'>
-          Copyright © {year} MediSlot. All rights reserved.
+          Copyright © {year} Prescripto. All rights reserved.
         </p>
       </div>
     </div>
