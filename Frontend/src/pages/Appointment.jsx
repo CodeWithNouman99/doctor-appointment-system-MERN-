@@ -91,7 +91,7 @@ const Appointment = () => {
           />
         </div>
 
-        <div className="flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
+        <div className="flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 -mt-20 sm:mt-0">
           <p className="flex items-center gap-2 text-2xl font-medium text-gray-900">
             {docInfo.name}
             <img className="w-5" src={assets.verified_icon} alt="Verified" />
@@ -110,7 +110,7 @@ const Appointment = () => {
             <p className="flex items-center gap-1 text-sm font-medium text-gray-900">
               About <img className="w-3" src={assets.info_icon} alt="" />
             </p>
-            <p className="text-sm text-gray-500 max-w-[700px] mt-1">
+            <p className="text-sm text-gray-500 max-w-175 mt-1">
               {docInfo.about}
             </p>
           </div>
@@ -156,7 +156,7 @@ const Appointment = () => {
             <p
               key={slot.time}
               onClick={() => setSlotTime(slot.time)}
-              className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer transition-all ${
+              className={`text-sm font-light shrink-0 px-5 py-2 rounded-full cursor-pointer transition-all ${
                 slot.time === slotTime
                   ? "bg-[#5F6FFF] text-white"
                   : "text-gray-500 border border-gray-300 hover:border-[#5F6FFF]"
