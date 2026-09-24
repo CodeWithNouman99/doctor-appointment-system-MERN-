@@ -127,7 +127,7 @@ const Contact = () => {
                 <Icon path={item.icon} />
               </div>
               <p className="font-semibold text-gray-900 mt-4">{item.title}</p>
-              <p className="text-sm text-gray-500 mt-1 break-words">
+              <p className="text-sm text-gray-500 mt-1 wrap-break-word">
                 {item.value}
               </p>
             </>

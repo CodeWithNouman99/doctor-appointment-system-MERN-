@@ -71,7 +71,7 @@ const About = () => {
 
       {/* ---------- Story ---------- */}
       <section className='flex flex-col md:flex-row items-center gap-12 my-20'>
-        <div className='relative w-full md:max-w-[400px]'>
+        <div className='relative w-full md:max-w-100'>
           <div className='absolute -top-4 -left-4 w-full h-full bg-[#5F6FFF] rounded-2xl'></div>
           <img className='relative w-full rounded-2xl' src={assets.about_image} alt="Doctors at Prescripto" />
         </div>
