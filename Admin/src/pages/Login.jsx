@@ -104,10 +104,13 @@ const Login = () => {
   const onSubmitHandler = async (event) => {
     event.preventDefault()
     setLoading(true)
+    
 
     try {
-      if (state === 'Admin') {
-        const { data } = await axios.post(`${backendUrl}/api/admin/login`, { email, password })
+     if (state === 'Admin') {
+  console.log('URL:', backendUrl)                                   // <-- 1. axios se PEHLE
+  const { data } = await axios.post(`${backendUrl}/api/admin/login`, { email, password })
+  console.log('RESPONSE:', data)                                    // <-- 2. axios ke BAAD
 
         if (data.success) {
           localStorage.setItem('aToken', data.token)
@@ -406,6 +409,7 @@ const Login = () => {
           </p>
         </form>
       </div>
+      
     </div>
   )
 }
