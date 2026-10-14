@@ -1,9 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import bcrypt from "bcrypt";
-import doctorModel from "../models/Doctor.model.js";
 import jwt from "jsonwebtoken";
-
-
+import doctorModel from "../models/Doctor.model.js";
 
 // API for adding doctor
 const addDoctor = async (req, res) => {
@@ -59,8 +57,7 @@ const addDoctor = async (req, res) => {
   }
 };
 
-
-// Api for admin login
+// API for admin login
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -69,10 +66,9 @@ const adminLogin = async (req, res) => {
       return res.status(400).json({ success: false, message: "Email and password are required" });
     }
 
-    // Here you would typically check the admin credentials against your database
-    // For now, we'll just check against the environment variables
     if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-        const token = jwt.sign({ email, password }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      // password token mein nahi rakhte, sirf email aur role
+      const token = jwt.sign({ email, role: "admin" }, process.env.JWT_SECRET, { expiresIn: "1d" });
       res.status(200).json({ success: true, message: "Admin login successful", token });
     } else {
       res.status(401).json({ success: false, message: "Invalid email or password" });
@@ -83,4 +79,33 @@ const adminLogin = async (req, res) => {
   }
 };
 
-export { addDoctor, adminLogin };
+// API to get all doctors list for admin panel
+const allDoctors = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find().select("-password -__v").lean();
+    res.status(200).json({ success: true, doctors });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+// API to toggle doctor availability
+const changeAvailability = async (req, res) => {
+  try {
+    const { docId } = req.body;
+
+    const doctor = await doctorModel.findById(docId);
+    if (!doctor) {
+      return res.status(404).json({ success: false, message: "Doctor not found" });
+    }
+
+    await doctorModel.findByIdAndUpdate(docId, { available: !doctor.available });
+    res.status(200).json({ success: true, message: "Availability changed" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+export { addDoctor, adminLogin, allDoctors, changeAvailability };
